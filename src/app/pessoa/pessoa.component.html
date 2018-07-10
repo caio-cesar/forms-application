@@ -1,0 +1,50 @@
+<div class="card">
+  <header class="card-header">Cadastro de Pessoas</header>
+  
+  <div style="padding:10px">
+    <form #cadastroPessoa [formGroup]="_pessoaGroup" novalidate>
+
+      <div formGroupName="dadosPrincipais">
+        
+        <div class="form-group">
+          <label for="nome">Nome completo</label>
+          <input type="text" class="form-control" id="nome" name="nome" formControlName="nome" style="width: 70%">
+          
+          <div *ngIf="nome.invalid && (nome.dirty || nome.touched)" class="alert alert-danger">
+            <div *ngIf="nome.errors.required">
+              Campo Obrigatório. Por favor preencha o nome completo.
+            </div>
+            <div *ngIf="nome.errors.minlength">
+              Nome deve conter pelo menos 10 caracteres.
+            </div>
+          </div>
+
+        </div>
+
+        <div class="form-group">
+          <label for="cpf">CPF</label>
+          <input type="text" class="form-control" id="cpf" name="cpf" formControlName="cpf" required style="width: 20%" 
+          mask="000.000.000-00"/>
+          <div *ngIf="cpf.invalid && (cpf.dirty || cpf.touched)" class="alert alert-danger">
+            <div *ngIf="cpf.errors.required">
+              Campo Obrigatório. Por favor preencha o CPF.
+            </div>
+            <div *ngIf="cpf.errors.validateCPF">
+              Valor de CPF Inválido
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="cpf">RG</label>
+          <input type="text" class="form-control" id="rg" name="rg" formControlName="rg" required style="width: 20%"/>
+        </div>
+        
+        <div class="form-group">
+          <label for="dataNascimento">Data de Nascimento:</label>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Salvar</button>
+    </form>
+  </div>
+</div>
